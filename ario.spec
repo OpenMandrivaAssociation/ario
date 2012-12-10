@@ -1,25 +1,25 @@
-Name: ario
-Version: 1.5.1
-Release: %mkrel 2
-Summary: Ario is a GTK2 client for MPD
-Group: Sound
-License: GPLv2
-Url: http://ario-player.sourceforge.net/
-Source: %{name}-%{version}.tar
-BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: intltool
-BuildRequires: unique-devel
-BuildRequires: gnutls-devel
-BuildRequires: curl-devel
-BuildRequires: libxml2-devel
-BuildRequires: glib2-devel
-BuildRequires: libmpdclient-devel
-BuildRequires: libnotify-devel
-BuildRequires: taglib-devel
-BuildRequires: libsoup-devel
-BuildRequires: avahi-glib-devel
-BuildRequires: avahi-client-devel
-Requires: mpd
+Name:		ario
+Version:	1.5.1
+Release:	2
+Summary:	Ario is a GTK2 client for MPD
+Group:		Sound
+License:	GPLv2
+Url:		http://ario-player.sourceforge.net/
+Source:		%{name}-%{version}.tar
+Patch1:		ario-1.5.1-glib.patch
+BuildRequires:	intltool
+BuildRequires:	pkgconfig(unique-1.0)
+BuildRequires:	pkgconfig(gnutls)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(libmpdclient)
+BuildRequires:	pkgconfig(libnotify)
+BuildRequires:	pkgconfig(taglib)
+BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	pkgconfig(avahi-glib)
+BuildRequires:	pkgconfig(avahi-client)
+Requires:	mpd
 
 %description
 Ario is a GTK2 client for MPD (Music player daemon).
@@ -28,23 +28,20 @@ by Rhythmbox but Ario aims to be much lighter and faster.
 
 %prep
 %setup -q
+%patch1 -p1
 
 %build
 ./configure --libdir=%{_libdir} --datadir=%{_datadir}
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall
+
 %find_lang %{name}
 
-%__rm -f %{buildroot}%{_iconsdir}/hicolor/icon-theme.cache
-
-%clean
-rm -rf %{buildroot}
+rm -f %{buildroot}%{_iconsdir}/hicolor/icon-theme.cache
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
@@ -52,3 +49,15 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}
 %{_iconsdir}/*/*/apps/*
 
+%changelog
+* Thu Sep 01 2011 Andrey Bondrov <abondrov@mandriva.org> 1.5.1-1mdv2011.0
++ Revision: 697714
+- imported package ario
+
+
+* Thu Sep 01 2011 Andrey Bondrov <bondrov@math.dvgu.ru> 1.5.1-1mdv2010.2
+- New version 1.5.1
+
+* Sun Jan 03 2010 Andrey Bondrov <bondrov@math.dvgu.ru> 1.4.2-69.1mib2009.1
+- First build for MIB users
+- Mandriva Italia Backports
