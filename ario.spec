@@ -1,6 +1,6 @@
 Name:		ario
 Version:	1.5.1
-Release:	2
+Release:	3
 Summary:	GTK2 client for MPD
 Group:		Sound
 License:	GPLv2
