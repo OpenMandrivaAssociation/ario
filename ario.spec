@@ -4,7 +4,7 @@
 Summary:	Ario is a GTK2 client for MPD
 Name:		ario
 Version:	1.5.1
-Release:	3
+Release:	4
 Group:		Sound
 License:	GPLv2+
 Url:		http://ario-player.sourceforge.net/
