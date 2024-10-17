@@ -7,7 +7,7 @@ Version:	1.5.1
 Release:	4
 Group:		Sound
 License:	GPLv2+
-Url:		http://ario-player.sourceforge.net/
+Url:		https://ario-player.sourceforge.net/
 Source0:	%{name}-%{version}.tar
 Source10:	%{name}.rpmlintrc
 Patch1:		ario-1.5.1-glib.patch
